@@ -1,8 +1,9 @@
-# React + Vite
+Project Name: Tech Skill Coursse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project Details: Development a beautiful websit for Tech Skill Coursse.Here you are firebase auth login using email and password,google login,githhub login.After login we see the course details of diiferent prograaming language and course outline.
 
-Currently, two official plugins are available:
+Techonology covered by:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+HTML,CSS Framework: Tailwind CSS Component Library for Tailwind CSS: DaisyUI React JS,React Router DOM,Firebase auth login,different library of react and express ja and node js backend service etc.
+
+Live Link: https://tech-skill-forge-info-auth.web.app
