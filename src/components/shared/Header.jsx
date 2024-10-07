@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 const Header = () => {
   const { googleSignIn } = useContext(AuthContext);
+  const { gitHubSignIn } = useContext(AuthContext);
   const { user, logOutUser } = useContext(AuthContext);
   console.log("Ajoy:" + user);
 
@@ -20,6 +21,7 @@ const Header = () => {
     setIsOpenReg(isOpenReg);
     setIsOpen(!isOpen);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here
@@ -70,6 +72,21 @@ const Header = () => {
   };
   //Google authnication end
 
+  //Github authintication start
+  const gitHublogInButtonClick = () => {
+    setIsOpen(false);
+    setIsOpenReg(false);
+    gitHubSignIn(githubProvider)
+     .then((result) => {
+      console.log(result.user);
+      toast.success("User Github Login Successful", {
+        position: "top-right",
+      });
+      navigate("/");
+     })
+  }
+  //Github authintication end
+
   return (
     <div className="bg-gray-200 px-4">
       <div className="navbar bg-slate-100">
@@ -106,7 +123,7 @@ const Header = () => {
           </div>
           <NavLink to={'/'}> <img
             src="/images/course_logo.png" className="w-16 h-16 rounded-xl" /></NavLink>
-         <NavLink className="font-bold text-green-600 text-3xl from-neutral-content" to={'/'}>Tech Skill Course</NavLink>
+          <NavLink className="font-bold text-green-600 text-3xl from-neutral-content" to={'/'}>Tech Skill Course</NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-semibold text-xl text-black">
@@ -173,16 +190,19 @@ const Header = () => {
                   required
                 />
               </div>
-              <div className="modal-action">
-                <button type="submit" className="btn btn-secondary">Login</button>
-                <button onClick={toggleModal} className="btn btn-outline">Close</button>
+              <div className="flex flex-col py-1">
+                <div className="py-2 flex justify-end">
+                  <button type="submit" className="btn btn-error">Login</button>
+                </div>
+                <div className="flex flex-row space-x-3 py-2">
+                  <button className="btn btn-secondary space-y-4" onClick={googlelogInButtonClick}>Login with google</button>
+                  <button className="btn btn-warning space-y-4" onClick={gitHublogInButtonClick}>Login with GitHub</button>
+                  <button onClick={toggleModal} className="btn btn-outline">Close</button>
+                </div>
               </div>
-              <div className="space-x-2">
-                <button className="btn btn-secondary space-y-4" onClick={googlelogInButtonClick}>Login with google</button>
-              </div>
-              <div>
+              {/* <div>
                 <span>Dont have an account?<NavLink className="text size-3 font-bold" onClick={toggleModalReg}>Register</NavLink></span>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
@@ -243,9 +263,9 @@ const Header = () => {
                 <button type="submit" className="btn btn-secondary">Register</button>
                 <button onClick={toggleModalReg} className="btn btn-outline">Close</button>
               </div>
-              <div>
+              {/* <div>
                 <span>Already have an account?<NavLink className="text size-3 font-bold" onClick={toggleModal}>Login here</NavLink></span>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
