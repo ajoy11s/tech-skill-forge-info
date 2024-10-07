@@ -66,6 +66,7 @@ const Header = () => {
 
   const googlelogOutButtonClick = () => {
     logOutUser();
+    navigate("/");
   };
   //Google authnication end
 
@@ -103,9 +104,9 @@ const Header = () => {
               }
             </ul>
           </div>
-          <img
-            src="/images/course_logo.png" className="w-16 h-16 rounded-xl" />
-          <a className="btn btn-ghost text-xl">Tech Skill Course</a>
+          <NavLink to={'/'}> <img
+            src="/images/course_logo.png" className="w-16 h-16 rounded-xl" /></NavLink>
+         <NavLink className="font-bold text-green-600 text-3xl from-neutral-content" to={'/'}>Tech Skill Course</NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-semibold text-xl text-black">
@@ -136,8 +137,8 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link className="btn btn-neutral" onClick={toggleModal}>LogIn</Link>
-                <Link className="btn btn-primary" onClick={toggleModalReg}>Registration</Link>
+                <Link className="btn btn-active btn-error text-cyan-100" onClick={toggleModal}>LogIn</Link>
+                <Link className="btn btn-primary text-cyan-100" onClick={toggleModalReg}>Registration</Link>
               </>
             )
           }

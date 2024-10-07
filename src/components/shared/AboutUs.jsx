@@ -7,7 +7,7 @@ function AboutUs() {
                 <div className="rounded-lg p-5">
                     <div className="gap-5 flex-col lg:flex">
                         <div className="flex-1">
-                            <img src="/src/assets/images/ajoy.jpg"alt="Ajoy Kumar Paul" className="rounded-full" />
+                            <img src="/images/ajoy.jpg"alt="Ajoy Kumar Paul" className="rounded-full" />
                         </div>
                         <div className="text-left mx-2">
                             <p className="text-lg font-bold mb-3">Ajoy Kumar Paul</p>
