@@ -43,7 +43,7 @@ function Contact() {
                     </svg>
                     <input type="text" className="grow" placeholder="Mobile No" />
                 </label>
-                <div className="flex space-x-2 items-baseline">
+                <div className="flex space-x-2 place-items-end">
                     <textarea className="textarea textarea-bordered textarea-lg w-full max-w-xs flex items-center gap-2" placeholder="Please enter your query"></textarea>
                     <button className="btn btn-success flex items-center justify-end">Submit</button>
                 </div>
