@@ -96,7 +96,7 @@ const Header = () => {
               {
                 user ? (
                   <>
-                    <Link to={"/coursepage"}><li><a>Products</a></li></Link>
+                    <Link to={"/coursepage"}><li><a>Courses</a></li></Link>
                   </>
                 ) : (
                   <></>
@@ -114,7 +114,7 @@ const Header = () => {
             {
               user ? (
                 <>
-                  <Link to={"/coursepage"}><li><a>Products</a></li></Link>
+                  <Link to={"/coursepage"}><li><a>Courses</a></li></Link>
                 </>
               ) : (
                 <></>
