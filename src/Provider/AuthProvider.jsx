@@ -5,6 +5,9 @@ import {
   GithubAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
 import app from "../../public/Firebase/firebase.config";
@@ -25,6 +28,17 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, gitHubProvider);
   };
 
+  const registerEmailPassword = (email,password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
+  const signInEmailPassword = (email,password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   const logOutUser = () => {
     return signOut(auth);
   };
@@ -41,7 +55,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <>
-      <AuthContext.Provider value={{ googleSignIn, gitHubSignIn, user, logOutUser }}>
+      <AuthContext.Provider value={{ googleSignIn, gitHubSignIn, user, logOutUser,registerEmailPassword,updateUserProfile,signInEmailPassword }}>
         {children}
       </AuthContext.Provider>
     </>

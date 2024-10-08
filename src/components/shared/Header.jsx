@@ -6,11 +6,15 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
+
+
 const Header = () => {
   const { googleSignIn } = useContext(AuthContext);
   const { gitHubSignIn } = useContext(AuthContext);
   const { user, logOutUser } = useContext(AuthContext);
-  console.log("Ajoy:" + user);
+  const { registerEmailPassword, updateUserProfile } = useContext(AuthContext);
+  const { signInEmailPassword } = useContext(AuthContext);
+
 
 
   // Login modal code start
@@ -22,9 +26,20 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
+  const [emailLogin, setEmailLogin] = useState('');
+  const [passwordLogin, setPasswordLogin] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsOpen(false);
     // Handle login logic here
+    signInEmailPassword(emailLogin, passwordLogin)
+      .then((result) => {
+        console.log("Data User:" + result.user);
+        toast.success("Login Successful", {
+          position: "top-right",
+        });
+        navigate("/");
+      })
     console.log('Form submitted');
   };
   // Login modal code end
@@ -35,14 +50,44 @@ const Header = () => {
     setIsOpen(isOpen);
     setIsOpenReg(!isOpenReg);
   };
+
+  //Register user using email and password
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [fullname, setFullName] = useState('');
+
+  const photoUrl = "/images/user.png";
   const handleSubmitReg = (e) => {
     e.preventDefault();
+    setIsOpenReg(false);
+    setError('');
     // Handle Register logic here
-    console.log('Form submitted');
+    registerEmailPassword(email, password)
+      .then((result) => {
+        console.log(result.user);
+        handleUserProfile(fullname, photoUrl);
+        toast.success("User Registration Successful", {
+          position: "top-right",
+        });
+        navigate("/");
+        console.log('Form submitted');
+      })
+  };
+
+
+  const handleUserProfile = (name, photo) => {
+    const profile = { displayName: name, photoURL: photo };
+
+    updateUserProfile(profile)
+      .then(() => { })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   // Register modal code end
 
-  //Google authnication start
+
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const navigate = useNavigate();
@@ -77,13 +122,13 @@ const Header = () => {
     setIsOpen(false);
     setIsOpenReg(false);
     gitHubSignIn(githubProvider)
-     .then((result) => {
-      console.log(result.user);
-      toast.success("User Github Login Successful", {
-        position: "top-right",
-      });
-      navigate("/");
-     })
+      .then((result) => {
+        console.log(result.user);
+        toast.success("User Github Login Successful", {
+          position: "top-right",
+        });
+        navigate("/");
+      })
   }
   //Github authintication end
 
@@ -174,6 +219,8 @@ const Header = () => {
                 </label>
                 <input
                   type="email"
+                  value={emailLogin}
+                  onChange={(e) => setEmailLogin(e.target.value)}
                   placeholder="Enter your email"
                   className="input input-bordered"
                   required
@@ -185,6 +232,8 @@ const Header = () => {
                 </label>
                 <input
                   type="password"
+                  value={passwordLogin}
+                  onChange={(e) => setPasswordLogin(e.target.value)}
                   placeholder="••••••••"
                   className="input input-bordered"
                   required
@@ -214,13 +263,15 @@ const Header = () => {
         <div className="modal modal-open">
           <div className="modal-box">
             <h2 className="font-bold text-lg bg-orange-500">Register</h2>
-            <form onSubmit={handleSubmitReg} className="py-4">
+            <form onSubmit={handleSubmitReg} className="py-1">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
                 <input
                   type="text"
+                  value={fullname}
+                  onChange={(e) => setFullName(e.target.value)}
                   placeholder="Enter your name"
                   className="input input-bordered"
                   required
@@ -232,17 +283,21 @@ const Header = () => {
                 </label>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   className="input input-bordered"
                   required
                 />
               </div>
-              <div className="form-control mt-4">
+              <div className="form-control mt-2">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="input input-bordered"
                   required
@@ -260,6 +315,7 @@ const Header = () => {
                 />
               </div>
               <div className="modal-action">
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit" className="btn btn-secondary">Register</button>
                 <button onClick={toggleModalReg} className="btn btn-outline">Close</button>
               </div>
