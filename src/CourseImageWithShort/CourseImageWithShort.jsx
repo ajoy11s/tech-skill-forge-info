@@ -4,9 +4,12 @@ import ImageWithPlaceholder from './ImageWithPlaceholder';
 import { useState } from "react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 function CourseImageWithShort() {
     const [images, setImages] = useState([]);
+    const { user, logOutUser } = useContext(AuthContext);
 
     useEffect(() => {
         fetch('https://techcoursedetails.netlify.app/.netlify/functions/api/products')
@@ -39,21 +42,29 @@ function CourseImageWithShort() {
                                 <span className="text-xl text-green-600 line-clamp-1">{eimage.title}</span>
                                 <img src={eimage.author_img_url} alt={eimage.author} className="rounded-full size-10" />
                                 <span>{eimage.author}</span>
-                                <div className="w-full flex justify-end py-2 px-2">
-                                    <button className="btn btn-outline btn-primary justify-end" onClick={() => document.getElementById('my_modal_3').showModal()}>View Details</button>
 
-                                    <dialog id="my_modal_3" className="modal">
-                                        <div className="modal-box  bg-slate-300">
-                                            <form method="dialog">
-                                                {/* if there is a button in form, it will close the modal */}
-                                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                            </form>
-                                            <h3 className="font-bold text-lg text-green-800">Tech Skill Course</h3>
-                                            <p className="py-4 text-green-700 font-semibold">Please login/registration from top right corner to view details.</p>
+                                {
+                                    user ? (
+                                        <>
+                                        </>
+                                    ) : (
+                                        <div className="w-full flex justify-end py-2 px-2">
+                                            <button className="btn btn-outline btn-primary justify-end" onClick={() => document.getElementById('my_modal_3').showModal()}>View Details</button>
+                                            <dialog id="my_modal_3" className="modal">
+                                                <div className="modal-box  bg-slate-300">
+                                                    <form method="dialog">
+                                                        {/* if there is a button in form, it will close the modal */}
+                                                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                                    </form>
+                                                    <h3 className="font-bold text-lg text-green-800">Tech Skill Course</h3>
+                                                    <p className="py-4 text-green-700 font-semibold">Please login/registration from top right corner to view details.</p>
+                                                </div>
+                                            </dialog>
                                         </div>
-                                    </dialog>
 
-                                </div>
+                                    )
+                                }
+
                             </div>
                         </div>
 
