@@ -221,7 +221,7 @@ const Header = () => {
       {isOpen && (
         <div className="modal modal-open">
           <div className="modal-box">
-            <h2 className="font-bold text-lg">Login</h2>
+            <h2 className="font-bold text-lg">Login Here</h2>
             <form onSubmit={handleSubmit} className="py-4">
               <div className="form-control">
                 <label className="label">
@@ -272,7 +272,7 @@ const Header = () => {
       {isOpenReg && (
         <div className="modal modal-open">
           <div className="modal-box">
-            <h2 className="font-bold text-lg bg-orange-500">Register</h2>
+            <h2 className="font-bold text-lg">Register Here</h2>
             <form onSubmit={handleSubmitReg} className="py-1">
               <div className="form-control">
                 <label className="label">
