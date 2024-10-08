@@ -164,11 +164,11 @@ const Header = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-semibold text-xl text-black">
-              <Link to={"/"}><li><a>Home</a></li></Link>
+              <Link to={"/"}><li><a><img src="/images/home-icon.png"/>Home</a></li></Link>
               {
                 user ? (
                   <>
-                    <Link to={"/coursepage"}><li><a>Courses</a></li></Link>
+                    <Link to={"/coursepage"}><li><a><img src="/images/course-icon.png"/>Courses</a></li></Link>
                   </>
                 ) : (
                   <></>
@@ -177,16 +177,16 @@ const Header = () => {
             </ul>
           </div>
           <NavLink to={'/'}> <img
-            src="/images/course_logo.png" className="w-16 h-16 rounded-xl" /></NavLink>
-          <NavLink className="font-bold text-green-600 text-3xl from-neutral-content space-x-1" to={'/'}>Tech Skill Course</NavLink>
+            src="/images/logo.png" className="w-16 h-16 rounded-xl" /></NavLink>
+          <NavLink className="font-bold text-green-600 text-3xl from-neutral-content space-x-1 px-1" to={'/'}>Tech Skill Course</NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-semibold text-xl text-black">
-            <Link to={"/"}><li><a>Home</a></li></Link>
+            <Link to={"/"}><li><a><img src="/images/home-icon.png"/>Home</a></li></Link>
             {
               user ? (
                 <>
-                  <Link to={"/coursepage"}><li><a>Courses</a></li></Link>
+                  <Link to={"/coursepage"}><li><a><img src="/images/course-icon.png"/>Courses</a></li></Link>
                 </>
               ) : (
                 <></>
@@ -200,15 +200,15 @@ const Header = () => {
             user ? (
               <>
                 <div className="flex items-center gap-2">
-                  <img src={user?.photoURL} className="w-7 rounded-full" />
-                  <span>{user?.displayName}</span>
+                  <img src={user?.photoURL || "/images/user.png"} className="w-7 rounded-full" />
+                  <span>{user?.displayName || "No Name" }</span>
                   <button onClick={googlelogOutButtonClick} className="btn btn-outline btn-success">
                     Logout
                   </button>
                 </div>
               </>
             ) : (
-              <div className="navbar-end gap-3 flex-col lg:flex-row space-x-2 flex justify-end">
+              <div className="navbar gap-3 flex-col lg:flex-row space-x-4 flex justify-end sm:w-32">
                 <Link className="btn btn-active btn-error text-cyan-100" onClick={toggleModal}>LogIn</Link>
                 <Link className="btn btn-primary text-cyan-100" onClick={toggleModalReg}>Registration</Link>
               </div>

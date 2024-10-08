@@ -2,7 +2,7 @@ import React from 'react'
 
 function Contact() {
     return (
-        <div className="bg-slate-100 flex flex-row justify-center space-y-3 py-2">
+        <div className="bg-slate-100 flex flex-col lg:flex-row justify-center space-y-3 py-2">
             <div className="lg:w-1/3 sm:w-full justify-center items-center">
                 <p className="text-2xl">
                     Please feel free to contact us for any technical training related details.</p>
