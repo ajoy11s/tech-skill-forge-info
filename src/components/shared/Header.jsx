@@ -14,8 +14,7 @@ const Header = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const { registerEmailPassword, updateUserProfile } = useContext(AuthContext);
   const { signInEmailPassword } = useContext(AuthContext);
-
-
+  
 
   // Login modal code start
   const [isOpen, setIsOpen] = useState(false);
@@ -145,7 +144,7 @@ const Header = () => {
 
   return (
     <div className="bg-gray-200 px-4">
-      <div className="navbar bg-slate-100">
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -179,7 +178,7 @@ const Header = () => {
           </div>
           <NavLink to={'/'}> <img
             src="/images/course_logo.png" className="w-16 h-16 rounded-xl" /></NavLink>
-          <NavLink className="font-bold text-green-600 text-3xl from-neutral-content" to={'/'}>Tech Skill Course</NavLink>
+          <NavLink className="font-bold text-green-600 text-3xl from-neutral-content space-x-1" to={'/'}>Tech Skill Course</NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-semibold text-xl text-black">
@@ -196,7 +195,7 @@ const Header = () => {
 
           </ul>
         </div>
-        <div className="navbar-end space-x-2">
+        <div className="navbar-end">
           {
             user ? (
               <>
@@ -209,10 +208,10 @@ const Header = () => {
                 </div>
               </>
             ) : (
-              <>
+              <div className="navbar-end gap-3 flex-col lg:flex-row space-x-2 flex justify-end">
                 <Link className="btn btn-active btn-error text-cyan-100" onClick={toggleModal}>LogIn</Link>
                 <Link className="btn btn-primary text-cyan-100" onClick={toggleModalReg}>Registration</Link>
-              </>
+              </div>
             )
           }
         </div>
