@@ -22,9 +22,12 @@ const Header = () => {
   const [isOpenReg, setIsOpenReg] = useState(false);
 
   const toggleModal = () => {
-    setIsOpenReg(isOpenReg);
-    setIsOpen(!isOpen);
+    setIsOpenReg(false);
+    setIsOpen(true);
   };
+  const toggleModalLoginClose = () => {
+    setIsOpen(false);
+  }
 
   const [emailLogin, setEmailLogin] = useState('');
   const [passwordLogin, setPasswordLogin] = useState('');
@@ -47,9 +50,17 @@ const Header = () => {
 
   // Register modal code start
   const toggleModalReg = () => {
-    setIsOpen(isOpen);
-    setIsOpenReg(!isOpenReg);
+    setIsOpen(false);
+    setIsOpenReg(true);
   };
+
+  const toggleModalRegFromLoginPage = () => {
+    setIsOpenReg(true);
+    setIsOpen(false);
+  }
+  const toggleModalRegClose = () => {
+    setIsOpenReg(false);
+  }
 
   //Register user using email and password
   const [email, setEmail] = useState('');
@@ -246,12 +257,12 @@ const Header = () => {
                 <div className="flex flex-row space-x-3 py-2">
                   <button className="btn btn-secondary space-y-4" onClick={googlelogInButtonClick}>Login with google</button>
                   <button className="btn btn-warning space-y-4" onClick={gitHublogInButtonClick}>Login with GitHub</button>
-                  <button onClick={toggleModal} className="btn btn-outline">Close</button>
+                  <button onClick={toggleModalLoginClose} className="btn btn-outline">Close</button>
                 </div>
               </div>
-              {/* <div>
-                <span>Dont have an account?<NavLink className="text size-3 font-bold" onClick={toggleModalReg}>Register</NavLink></span>
-              </div> */}
+              <div>
+                <span>Dont have an account?<NavLink className="text size-3 font-bold" onClick={toggleModalRegFromLoginPage}>Register</NavLink></span>
+              </div>
             </form>
           </div>
         </div>
@@ -317,11 +328,11 @@ const Header = () => {
               <div className="modal-action">
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit" className="btn btn-secondary">Register</button>
-                <button onClick={toggleModalReg} className="btn btn-outline">Close</button>
+                <button onClick={toggleModalRegClose} className="btn btn-outline">Close</button>
               </div>
-              {/* <div>
+              <div>
                 <span>Already have an account?<NavLink className="text size-3 font-bold" onClick={toggleModal}>Login here</NavLink></span>
-              </div> */}
+              </div>
             </form>
           </div>
         </div>
