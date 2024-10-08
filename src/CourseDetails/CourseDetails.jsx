@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import Rating from './Rating';
 
 const CourseDetails =()=> {
     const { _id } = useParams();
@@ -28,7 +29,7 @@ const CourseDetails =()=> {
         <div className="flex flex-col items-start text-left w-2/3 py-2 space-x-4">
             <span className="text-xl text-green-600">Title:{title}</span>
             <span className="text-xl text-green-500">Level:{level}</span>
-            <span className="text-xl text-green-400">Ratings:{ratings}</span>
+            <span className="text-xl text-green-400">Ratings:{ratings}  <Rating rating={ratings} /></span>
             <img src={author_img_url} alt={author} className="rounded-full size-10 w-40 h-40" />
             <span className="font-semibold">Writter:{author}</span>
             <span>Details:{details}</span>
